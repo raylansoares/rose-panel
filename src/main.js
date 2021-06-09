@@ -9,6 +9,7 @@ import VueSocketIO from "vue-socket.io";
 
 import "element-ui/lib/theme-chalk/index.css";
 import "./global.scss";
+import './index.css'
 
 Vue.use(ElementUI, { locale });
 
