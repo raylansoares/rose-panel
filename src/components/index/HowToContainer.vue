@@ -1,71 +1,36 @@
 <template>
-  <div id="how-to-container" ref="how-to-container" :class="theme">
-    <div id="how-to-container-inner">
-      <h2 class="title" :class="theme">Como Funciona?</h2>
+  <div
+    ref="how-to-container"
+    class="flex justify-center transition-colors duration-500 bg-white dark:bg-wheel-700"
+  >
+    <div class="flex-col w-full px-3 py-16 max-w-screen-xl">
+      <div class="flex justify-center pb-5 text-center text-5xl font-bold transition-colors duration-500 text-wheel-400 dark:text-wheel-50">
+        Como Funciona?
+      </div>
 
-      <p class="description" :class="theme">
-        Sempre que alguém se inscrever no seu canal, a roleta vai aparecer 
-        automaticamente e selecionar aleatoriamente um dos prêmios
-        configurados por você. Além de aparecer na tela, o bot
-        "<strong>RoletaDoSubscriber</strong>" anunciará o prêmio no chat.
-      </p>
+      <div class="text-center md:text-lg pt-1 transition-colors duration-500 text-wheel-500 dark:text-wheel-25">
+        <p class="pb-3">
+          Primeiro você cria as recompensas que deseja colocar na roleta, com as cores e porcentagens que desejar.
+          Em seguida, basta adicionar um overlay no OBS com o link personalizado da sua roleta.
+        </p>
 
-      <p class="description" :class="theme">
-        Siga o passo a passo abaixo para adicionar a roleta ao seu canal:
-      </p>
+        <p class="pb-3">
+          Sempre que alguém se inscrever no seu canal, a roleta vai aparecer automaticamente e selecionar um dos prêmios configurados por você.
+          Além de aparecer na tela, o bot "RoletaDoSubscriber" anunciará o prêmio no chat.
+        </p>
 
-      <ul class="steps" :class="theme">
-        <li class="step">
-          <span class="step-number" :class="theme">01 -></span>
-          <span>
-            Conecte sua conta da Twitch para acessar o painel.
-          </span>
-        </li>
+        <p class="pb-3">
+          Além dos subscribers, você também pode configurar uma quantidade mínima de bits para ativar a roleta ou até mesmo criar uma recompensa
+          personalizada com pontos de canal da Twitch para que seus views possam resgatar e ativar a roleta.
+        </p>
 
-        <li class="step">
-          <span class="step-number" :class="theme">02 -></span>
-          <span>
-            No painel, acesse a página de configurações clicando em
-            <strong>"Configurar Roleta"</strong> no menu.
-          </span>
-        </li>
-
-        <li class="step">
-          <span class="step-number" :class="theme">03 -></span>
-          <span>
-            Cadastre ou edite os prêmios que aparecerão na roleta.
-          </span>
-        </li>
-
-        <li class="step">
-          <span class="step-number" :class="theme">04 -></span>
-          <span>
-            Copie o link exibido em <strong>"URL da Roleta para o OBS"</strong>.
-          </span>
-        </li>
-
-        <li class="step">
-          <span class="step-number" :class="theme">05 -></span>
-          <span>
-            No OBS, adicione uma nova fonte do tipo "Navegador/Browser" e cole
-            o link copiado no passo anterior.
-          </span>
-        </li>
-
-        <li class="step">
-          <span class="step-number" :class="theme">06 -></span>
-          <span>
-            Tudo pronto! Você pode testar utilizando o bloco
-            <strong>"Roletar Manualmente"</strong> no painel.
-          </span>
-        </li>
-      </ul>
-
-      <p class="warning">
-        <strong>Importante</strong>: Não compartilhe o link da sua roleta e
-        nem deixe aberta no navegador, pois isso poderá fazer os prêmios serem
-        duplicados no chat.
-      </p>
+        <p>
+          Para ver o guia de configuração completo e todos os recursos disponíveis basta <a
+            href="#"
+            class="font-bold transition-colors duration-500 text-wheel-400 dark:text-wheel-50"
+          >Clicar aqui</a>!
+        </p>
+      </div>
     </div>
   </div>
 </template>
@@ -75,7 +40,7 @@ import { mapState } from 'vuex'
 import EventBus from '@/utils/event-bus'
 
 export default {
-  name: "HowToContainer",
+  name: 'HowToContainer',
 
   computed: {
     ...mapState(['theme'])
@@ -83,84 +48,11 @@ export default {
 
   created () {
     EventBus.$on('scroll-me-to', (refName) => {
-      const element = this.$refs[refName];
-      const top = element.offsetTop;
+      const element = this.$refs[refName]
+      const top = element.offsetTop
 
-      window.scrollTo(0, top);
+      window.scrollTo(0, top)
     })
   }
-};
-</script>
-
-<style lang="scss" scoped>
-#how-to-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-  &.light {
-    background: var(--color-background-lighter);
-  }
-  &.dark {
-    background: var(--color-background-darker);
-  }
-  #how-to-container-inner {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    height: auto;
-    padding: 40px 0 60px 0;
-    max-width: 1150px;
-    .title {
-      font-size: 3em;
-      padding: 10px 20px;
-      color: var(--color-primary);
-      &.light {
-        color: var(--color-primary);
-      }
-      &.dark {
-        color: var(--color-title-in-dark);
-      }
-    }
-    .description {
-      padding: 10px 20px;
-      font-size: 1.2em;
-      &.light {
-        color: var(--color-primary-dark);
-      }
-      &.dark {
-        color: var(--color-text-complement);
-      }
-    }
-    .steps {
-      font-size: 1.1em;
-      padding: 0 40px;
-      &.light {
-        color: var(--color-text-base);
-      }
-      &.dark {
-        color: var(--color-text-complement);
-      }
-      .step {
-        list-style-type: none;
-        padding: 3px;
-        .step-number {
-          font-weight: 700;
-          &.light {
-            color: var(--color-primary);
-          }
-          &.dark {
-            color: var(--color-primary-lighter);
-          }
-        }
-      }
-    }
-    .warning {
-      padding: 10px 20px 20px 20px;
-      font-size: 0.9em;
-      color: var(--color-tertiary);
-    }
-  }
 }
-</style>
+</script>

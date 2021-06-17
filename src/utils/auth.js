@@ -1,28 +1,28 @@
-import dayjs from "dayjs";
-import "dayjs/locale/pt-br";
-import store from "../store";
+import dayjs from 'dayjs'
+import 'dayjs/locale/pt-br'
+import store from '../store'
 
-dayjs.locale("pt-br");
+dayjs.locale('pt-br')
 
 const isAuthenticated = () => {
-  if (!store.state.user) return false;
+  if (!store.state.user) return false
 
-  const validToken = dayjs().isBefore(dayjs(store.state.user.expires));
+  const validToken = dayjs().isBefore(dayjs(store.state.user.expires))
 
   if (!validToken) {
-    store.commit("SET_USER", null);
-    return false;
+    store.commit('SET_USER', null)
+    return false
   }
 
-  return true;
-};
+  return true
+}
 
 const authConfig = {
-  authUrl: "https://id.twitch.tv/oauth2/authorize",
+  authUrl: 'https://id.twitch.tv/oauth2/authorize',
   client_id: process.env.VUE_APP_CLIENT_ID,
   redirect_uri: `${process.env.VUE_APP_URL}/login/callback`,
-  response_type: "code",
-  scopes: "user:read:email channel:read:redemptions bits:read"
-};
+  response_type: 'code',
+  scopes: 'user:read:email channel:read:redemptions bits:read'
+}
 
-export { isAuthenticated, authConfig };
+export { isAuthenticated, authConfig }

@@ -1,25 +1,82 @@
 <template>
-  <div id="start-container" :class="theme">
-    <div id="start-container-inner">
-      <div id="image-container">
-        <img src="../../assets/images/wheel.svg" alt="Roleta do Subscriber">
+  <div class="flex justify-center h-screen transition-colors duration-500 bg-wheel-50 dark:bg-wheel-800">
+    <div class="flex-col self-center w-full max-w-screen-xl">
+      <div class="flex justify-center w-full h-64 md:h-96 pb-2 md:pb-5 pt-5 md:pt-0">
+        <img
+          src="../../assets/images/wheel.svg"
+          alt="Roleta do Subscriber"
+        >
       </div>
-      <div id="text-container">
-        <div id="title-container">
-          <h1 :class="theme">Roleta do Subscriber</h1>
-          <p :class="theme">
-            Roleta automática e personalizável para subscribers e recompensas
-            de pontos de canal da Twitch.
-          </p>
+      <div class="flex-col w-full p-3">
+        <div class="flex-col">
+          <div class="flex justify-center text-center text-5xl font-bold transition-colors duration-500 text-wheel-400 dark:text-wheel-50">
+            Roleta do Subscriber
+          </div>
+          <div class="flex justify-center text-center md:text-lg pt-1 transition-colors duration-500 text-wheel-500 dark:text-wheel-100">
+            Roleta automática e personalizável para subscribers, bits e recompensas de pontos de canal da Twitch.
+          </div>
         </div>
-        <div id="buttons-container">
-          <button id="how-button" @click="scrollMeTo('how-to-container')">
-            <i class="material-icons">info</i>
-            <span>Como Funciona?</span>
+        <div class="flex flex-col md:flex-row justify-center pt-5 items-center">
+          <button
+            class="flex order-2 md:order-1 items-center justify-center w-8/12 md:w-4/12 lg:w-3/12 p-3 my-1 md:mx-2 text-white transition-opacity duration-300 border border-transparent rounded-md focus:outline-none focus:ring-0 bg-wheel-300 hover:opacity-80"
+            @click="scrollMeTo('how-to-container')"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="w-5 h-5"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                clip-rule="evenodd"
+              />
+            </svg>
+            <span class="pl-1">Como Funciona?</span>
           </button>
-          <button id="login-button" @click="connect()" :disabled="loading">
-            <i class="material-icons">login</i>
-            <span>{{ loading ? "Entrando..." : "Entrar com Twitch" }}</span>
+          <button
+            class="flex order-1 md:order-2 items-center justify-center w-8/12 md:w-4/12 lg:w-3/12 p-3 my-1 md:mx-2 text-white transition-opacity duration-300 border border-transparent rounded-md focus:outline-none focus:ring-0 disabled:opacity-50 disabled:cursor-not-allowed bg-wheel-400 hover:opacity-80"
+            :disabled="loading"
+            @click="connect()"
+          >
+            <svg
+              v-if="!loading"
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"
+              />
+            </svg>
+            <svg
+              v-if="loading"
+              class="animate-spin h-5 w-5 text-white"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+            >
+              <circle
+                class="opacity-25"
+                cx="12"
+                cy="12"
+                r="10"
+                stroke="currentColor"
+                stroke-width="4"
+              />
+              <path
+                class="opacity-75"
+                fill="currentColor"
+                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+              />
+            </svg>
+            <span class="pl-1">{{ loading ? "Carregando..." : "Acessar Minha Conta" }}</span>
           </button>
         </div>
       </div>
@@ -28,11 +85,10 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
 import EventBus from '@/utils/event-bus'
 
 export default {
-  name: "StartContainer",
+  name: 'StartContainer',
 
   props: {
     loading: {
@@ -41,181 +97,14 @@ export default {
     }
   },
 
-  computed: {
-    ...mapState(['theme'])
-  },
-
   methods: {
-    connect() {
-       this.$emit('connect');
+    connect () {
+      this.$emit('connect')
     },
 
-    scrollMeTo(refName) {
+    scrollMeTo (refName) {
       EventBus.$emit('scroll-me-to', refName)
     }
   }
-};
+}
 </script>
-
-<style lang="scss" scoped>
-#start-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  width: 100%;
-  height: auto;
-  padding-top: 35px;
-  &.light {
-    background: var(--color-background-light);
-  }
-  &.dark {
-    background: var(--color-background-dark);
-  }
-  #start-container-inner {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    height: auto;
-    max-width: 1150px;
-    justify-content: center;
-    #text-container {
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 20px;
-      #title-container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        h1 {
-          font-weight: 700;
-          font-size: 6.0rem;
-          line-height: 6.0rem;
-          max-width: 440px;
-          margin-bottom: 20px;
-          &.light {
-            color: var(--color-primary);
-          }
-          &.dark {
-            color: var(--color-title-in-dark);
-          }
-        }
-        p {
-          font-size: 1.4em;
-          line-height: 1.3em;
-          max-width: 390px;
-          &.light {
-            color: var(--color-primary-dark);
-          }
-          &.dark {
-            color: var(--color-text-in-dark);
-          }
-        }
-      }
-      #buttons-container {
-        display: flex;
-        flex-direction: row;
-        margin-top: 40px;
-        justify-content: center;
-        #how-button {
-          text-align: initial;
-          width: 206px;
-          display: flex;
-          align-items: center;
-          color: var(--color-title-in-primary);
-          padding: 14px 10px;
-          border: none;
-          border-radius: 8px;
-          background-color: var(--color-primary-light);
-          font-size: 16px;
-          transition: background-color 0.2s;
-          cursor: pointer;
-          &:focus {
-            outline:0;
-          }
-          &:hover {
-            background-color: var(--color-primary-lighter);
-          }
-          span {
-            margin-left: 5px;
-          }
-        }
-        #login-button {
-          text-align: initial;
-          width: 206px;
-          display: flex;
-          align-items: center;
-          margin-left: 20px;
-          color: var(--color-title-in-primary);
-          padding: 14px 10px;
-          border: none;
-          border-radius: 8px;
-          background-color: var(--color-primary);
-          font-size: 16px;
-          transition: background-color 0.2s;
-          cursor: pointer;
-          &:focus {
-            outline:0;
-          }
-          &:hover {
-            background-color: var(--color-primary-dark);
-          }
-          &:disabled {
-            background-color: var(--color-text-complement);
-            cursor: default;
-          }
-          span {
-            margin-left: 5px;
-          }
-        }
-      }
-    }
-    #image-container {
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      img {
-        width: 100%;
-        max-width: 280px;
-      }
-    }
-  }
-}
-@media (min-width:960px) {
-  #start-container {
-    height: 100vh;
-    padding-top: 0;
-    #start-container-inner {
-      height: 100vh;
-      display: grid;
-      grid-template-rows: 100% 1fr;
-      grid-template-columns: 2fr 2fr;
-      grid-template-areas: "text image";
-      #text-container {
-        grid-area: text;
-        #title-container {
-          align-items: flex-start;
-          text-align: left;
-          h1 {
-            font-size: 8.5rem;
-            line-height: 8.5rem;
-          }
-        }
-        #buttons-container {
-          justify-content: left;
-        }
-      }
-      #image-container {
-        grid-area: image;
-        img {
-          width: 90%;
-          max-width: 525px;
-        }
-      }
-    }
-  }
-}
-</style>

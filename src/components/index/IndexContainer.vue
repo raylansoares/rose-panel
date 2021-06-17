@@ -1,19 +1,16 @@
 <template>
-  <div id="index-container">
+  <div class="flex-col items-center w-full h-full">
     <ThemeContainer
       @set-theme="setTheme($event)"
     />
 
-    <div id="content-container">
+    <div class="flex-col w-full h-full">
       <StartContainer
         :loading="loading"
-        @scroll-me-to="scrollMeTo($event)"
         @connect="connect()"
       />
 
       <HowToContainer />
-
-      <FaqContainer />
 
       <ContactContainer />
     </div>
@@ -21,23 +18,21 @@
 </template>
 
 <script>
-import { authConfig } from "@/utils/auth";
+import { authConfig } from '@/utils/auth'
 import { mapState } from 'vuex'
 import axios from '@/repositories/clients/axios'
 import ThemeContainer from '@/components/index/ThemeContainer'
 import StartContainer from '@/components/index/StartContainer'
 import HowToContainer from '@/components/index/HowToContainer'
-import FaqContainer from '@/components/index/FaqContainer'
 import ContactContainer from '@/components/index/ContactContainer'
 
 export default {
-  name: "IndexContainer",
+  name: 'IndexContainer',
 
   components: {
     ThemeContainer,
     StartContainer,
     HowToContainer,
-    FaqContainer,
     ContactContainer
   },
 
@@ -49,13 +44,13 @@ export default {
     ...mapState(['theme'])
   },
 
-  mounted() {
-    this.makeAuth();
-    this.setTheme(this.theme);
+  mounted () {
+    this.makeAuth()
+    this.setTheme(this.theme)
   },
 
   methods: {
-    async makeAuth() {
+    async makeAuth () {
       try {
         const code = this.$route.query.code
 
@@ -68,52 +63,36 @@ export default {
 
         const authenticatedUser = await axios.post(url, {
           code: code, redirect: authConfig.redirect_uri
-        });
-        
-        this.$store.commit("SET_USER", authenticatedUser.data);
-        this.$router.push({ name: "Dashboard" });
+        })
+
+        this.$store.commit('SET_USER', authenticatedUser.data)
+        this.$router.push({ name: 'Dashboard' })
       } catch (e) {
-        this.$message.error('Ops, não foi possível conectar sua conta');
+        this.$message.error('Ops, não foi possível conectar sua conta')
       }
 
       this.loading = false
     },
 
-    connect() {
-      this.loading = true;
-      window.location = this.getAuthUrl();
+    connect () {
+      this.loading = true
+      window.location = this.getAuthUrl()
     },
 
-    getAuthUrl() {
-      let url = authConfig.authUrl;
+    getAuthUrl () {
+      let url = authConfig.authUrl
 
-      url += "?client_id=" + authConfig.client_id;
-      url += "&redirect_uri=" + authConfig.redirect_uri;
-      url += "&response_type=" + authConfig.response_type;
-      url += "&scope=" + authConfig.scopes;
+      url += '?client_id=' + authConfig.client_id
+      url += '&redirect_uri=' + authConfig.redirect_uri
+      url += '&response_type=' + authConfig.response_type
+      url += '&scope=' + authConfig.scopes
 
-      return url;
+      return url
     },
 
-    setTheme(theme) {
-      this.$store.commit("SET_THEME", theme);
+    setTheme (theme) {
+      this.$store.commit('SET_THEME', theme)
     }
   }
-};
-</script>
-
-<style lang="scss" scoped>
-#index-container {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  #content-container {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    height: 100%;
-  }
 }
-</style>
+</script>
