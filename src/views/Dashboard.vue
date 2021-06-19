@@ -3,13 +3,13 @@
 </template>
 
 <script>
-import DashboardContainer from "@/components/dashboard/DashboardContainer";
+import DashboardContainer from '@/components/dashboard/DashboardContainer'
 
 export default {
-  name: "DashboardView",
+  name: 'DashboardView',
 
   components: {
     DashboardContainer
   }
-};
+}
 </script>

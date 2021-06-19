@@ -27,7 +27,8 @@ module.exports = {
       opacity: ['disabled'],
       scale: ['active'],
       backgroundColor: ['disabled'],
-      cursor: ['disabled']
+      cursor: ['disabled'],
+      fontWeight: ['hover']
     },
     scrollbar: ['rounded']
   },
