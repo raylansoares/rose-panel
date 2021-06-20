@@ -1,3 +1,5 @@
+const { fontSize } = require('tailwindcss/defaultTheme')
+
 module.exports = {
   purge: ['./index.html', './src/**/*.{vue,js}'],
   darkMode: 'class', // or 'media' or 'class'
@@ -20,6 +22,10 @@ module.exports = {
           800: '#18181B'
         }
       }
+    },
+    fontSize: {
+      ...fontSize,
+      xs: '.65rem'
     }
   },
   variants: {
@@ -30,7 +36,7 @@ module.exports = {
       cursor: ['disabled'],
       fontWeight: ['hover']
     },
-    scrollbar: ['rounded']
+    scrollbar: ['rounded', 'dark']
   },
   plugins: [
     require('@tailwindcss/forms'),

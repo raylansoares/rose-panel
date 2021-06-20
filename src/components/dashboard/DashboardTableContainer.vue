@@ -1,7 +1,5 @@
 <template>
-  <div
-    class="flex-col h-full pb-32 w-full p-5 transition-colors duration-500 bg-white dark:bg-black bg-opacity-50 dark:bg-opacity-25 rounded-lg border border-wheel-25 dark:border-wheel-700 border-opacity-25"
-  >
+  <div class="flex-col h-full pb-32 w-full p-5 transition-colors duration-500 bg-white dark:bg-black bg-opacity-50 dark:bg-opacity-25 rounded-lg border border-wheel-25 dark:border-wheel-700 border-opacity-25">
     <div class="flex items-center justify-between mb-3">
       <div class="text-xl font-bold transition-colors duration-500 text-wheel-0 dark:text-wheel-25">
         Roletas Resgatadas
@@ -149,7 +147,7 @@ import { mapState } from 'vuex'
 dayjs.locale('pt-br')
 
 export default {
-  name: 'TableContainer',
+  name: 'DashboardTableContainer',
 
   filters: {
     formatDate: value => dayjs(value).format('DD/MM - HH:mm')

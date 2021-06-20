@@ -18,7 +18,7 @@
         </div>
         <div class="flex flex-col md:flex-row justify-center pt-5 items-center">
           <button
-            class="flex order-2 md:order-1 items-center justify-center w-8/12 md:w-4/12 lg:w-3/12 p-3 my-1 md:mx-2 text-white transition-opacity duration-500 border border-transparent rounded-md focus:outline-none focus:ring-0 bg-wheel-300 hover:opacity-80"
+            class="flex order-2 md:order-1 items-center justify-center w-8/12 md:w-4/12 lg:w-3/12 p-3 my-1 md:mx-2 text-white transition-opacity duration-500 border border-transparent rounded-md focus:outline-none focus:ring-0 bg-wheel-300 hover:opacity-80 dark:bg-opacity-50"
             @click="scrollMeTo('how-to-container')"
           >
             <svg
@@ -36,7 +36,7 @@
             <span class="pl-1">Como Funciona?</span>
           </button>
           <button
-            class="flex order-1 md:order-2 items-center justify-center w-8/12 md:w-4/12 lg:w-3/12 p-3 my-1 md:mx-2 text-white transition-opacity duration-500 border border-transparent rounded-md focus:outline-none focus:ring-0 disabled:opacity-50 disabled:cursor-not-allowed bg-wheel-400 hover:opacity-80"
+            class="flex order-1 md:order-2 items-center justify-center w-8/12 md:w-4/12 lg:w-3/12 p-3 my-1 md:mx-2 text-white transition-opacity duration-500 border border-transparent rounded-md focus:outline-none focus:ring-0 disabled:opacity-50 disabled:cursor-not-allowed bg-wheel-400 hover:opacity-80 dark:bg-opacity-50"
             :disabled="loading"
             @click="connect()"
           >

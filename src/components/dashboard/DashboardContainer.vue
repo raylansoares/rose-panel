@@ -1,17 +1,17 @@
 <template>
-  <div class="h-full w-full md:w-9/12">
-    <TableContainer />
+  <div class="flex-col h-full w-full md:w-9/12 pb-5">
+    <DashboardTableContainer />
   </div>
 </template>
 
 <script>
-import TableContainer from '@/components/dashboard/TableContainer'
+import DashboardTableContainer from '@/components/dashboard/DashboardTableContainer'
 
 export default {
   name: 'DashboardContainer',
 
   components: {
-    TableContainer
+    DashboardTableContainer
   }
 }
 </script>
