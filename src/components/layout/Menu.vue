@@ -1,15 +1,15 @@
 <template>
   <div class="flex-col h-full w-full md:w-3/12 space-y-3">
     <div
-      class="flex-col w-full p-5 transition-colors duration-500 bg-white dark:bg-black bg-opacity-50 dark:bg-opacity-25 rounded-lg border border-wheel-25 dark:border-wheel-700 border-opacity-25"
+      class="flex-col w-full p-6 transition-colors duration-500 bg-white dark:bg-black bg-opacity-50 dark:bg-opacity-25 rounded-lg border border-wheel-25 dark:border-wheel-700 border-opacity-25"
     >
       <div class="flex justify-center">
         <img
           :src="user.profile_image_url"
-          class="h-12 w-12 rounded-full"
+          class="h-16 w-16 rounded-full"
         >
       </div>
-      <div class="text-lg font-bold text-center transition-colors duration-500 text-wheel-0 dark:text-wheel-25">
+      <div class="text-lg pt-0.5 font-bold text-center transition-colors duration-500 text-wheel-0 dark:text-wheel-25">
         {{ user.display_name }}
       </div>
     </div>
@@ -27,7 +27,7 @@
           class="w-9/12 text-wheel-0 dark:text-wheel-25 bg-white dark:bg-wheel-800 border-wheel-25 border-opacity-25 transition-colors duration-500 rounded-md focus:border-wheel-400 focus:ring-0"
         >
         <button
-          class="flex items-center justify-center w-3/12 p-2 text-white transition-opacity duration-300 border border-transparent rounded-md focus:outline-none focus:ring-0 bg-wheel-400 hover:opacity-80 dark:bg-opacity-50"
+          class="flex items-center justify-center w-3/12 p-2 text-white transition-opacity duration-500 border border-transparent rounded-md focus:outline-none focus:ring-0 bg-wheel-400 hover:opacity-80 dark:bg-opacity-50"
           @click="manualWheel()"
         >
           <svg
@@ -47,9 +47,7 @@
         </button>
       </div>
     </div>
-    <div
-      class="flex-col w-full p-5 space-y-2 transition-colors duration-500 bg-white dark:bg-black bg-opacity-50 dark:bg-opacity-25 rounded-lg border border-wheel-25 dark:border-wheel-700 border-opacity-25"
-    >
+    <div class="flex-col w-full p-5 space-y-2 transition-colors duration-500 bg-white dark:bg-black bg-opacity-50 dark:bg-opacity-25 rounded-lg border border-wheel-25 dark:border-wheel-700 border-opacity-25">
       <router-link
         to="/dashboard"
         class="flex items-center space-x-1 text-md transition-colors duration-500 text-wheel-0 dark:text-wheel-25 hover:text-wheel-400 dark:hover:text-wheel-300"
@@ -85,7 +83,7 @@
       </router-link>
 
       <router-link
-        to="/rewardsConfig"
+        to="/rewards"
         class="flex items-center space-x-1 text-md transition-colors duration-500 text-wheel-0 dark:text-wheel-25 hover:text-wheel-400 dark:hover:text-wheel-300"
       >
         <svg
@@ -97,6 +95,26 @@
           <path d="M11 17a1 1 0 001.447.894l4-2A1 1 0 0017 15V9.236a1 1 0 00-1.447-.894l-4 2a1 1 0 00-.553.894V17zM15.211 6.276a1 1 0 000-1.788l-4.764-2.382a1 1 0 00-.894 0L4.789 4.488a1 1 0 000 1.788l4.764 2.382a1 1 0 00.894 0l4.764-2.382zM4.447 8.342A1 1 0 003 9.236V15a1 1 0 00.553.894l4 2A1 1 0 009 17v-5.764a1 1 0 00-.553-.894l-4-2z" />
         </svg>
         <span>Pontos de Canal</span>
+      </router-link>
+
+      <router-link
+        to="/help"
+        target="_blank"
+        class="flex items-center space-x-1 text-md transition-colors duration-500 text-wheel-0 dark:text-wheel-25 hover:text-wheel-400 dark:hover:text-wheel-300"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-5 w-5"
+          viewBox="0 0 20 20"
+          fill="currentColor"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z"
+            clip-rule="evenodd"
+          />
+        </svg>
+        <span>Ajuda e Tutoriais</span>
       </router-link>
     </div>
   </div>

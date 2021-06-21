@@ -1,158 +1,208 @@
 <template>
-  <div id="rewards-table-container" :class="theme">
-    <div id="table-header" :class="theme">
-      <h3>
-        Recompensas de Pontos de Canal
-      </h3>
-      <div class="search">
-        <button
-          class="default-btn example-btn"
-          @click="showExample = true"
-        >
-          <i class="material-icons">assignment_turned_in</i> Ver Exemplo
-        </button>
-        <input
-          v-model="search"
-          :class="theme"
-          :disabled="!!selectedItem"
-          @input="filterRewards()"
-          placeholder="Buscar por nome da recompensa"
-        >
+  <div class="flex-col h-auto w-full p-5 transition-colors duration-500 bg-white dark:bg-black bg-opacity-50 dark:bg-opacity-25 rounded-lg border border-wheel-25 dark:border-wheel-700 border-opacity-25">
+    <div class="flex items-center justify-between mb-3">
+      <div class="text-xl font-bold transition-colors duration-500 text-wheel-0 dark:text-wheel-25">
+        Recompensas Vinculadas
       </div>
+      <input
+        v-model="search"
+        type="text"
+        :disabled="!!selectedItem"
+        placeholder="Buscar por nome da recompensa"
+        class="w-4/12 text-wheel-0 dark:text-wheel-25 bg-white dark:bg-wheel-800 border-wheel-25 border-opacity-25 transition-colors duration-500 rounded-md focus:border-wheel-400 focus:ring-0"
+        @input="filterRewards()"
+      >
     </div>
-    <div id="table-content">
-      <table border="0" cellspacing="0" cellpadding="0">
+    <div>
+      <table class="table-fixed border-collapse w-full">
         <thead>
-          <tr>
-            <th :class="theme" class="name">Nome</th>
-            <th :class="theme" class="type">Tipo</th>
-            <th :class="theme" class="action">Ação</th>
-            <th :class="theme" class="time">Tempo</th>
-            <th :class="theme" class="actions">Ações</th>
+          <tr class="bg-wheel-25 bg-opacity-20 text-md font-bold transition-colors duration-500 text-wheel-0 dark:text-wheel-25">
+            <th class="w-3/12 md:w-3/12 px-1 py-3 text-left">
+              Recompensa
+            </th>
+            <th class="w-3/12 md:w-3/12 px-1 py-3 text-left">
+              Ação
+            </th>
+            <th class="w-3/12 md:w-3/12 px-1 py-3 text-left">
+              Comando
+            </th>
+            <th class="w-2/12 md:w-2/12 px-1 py-3 text-left">
+              Tempo
+            </th>
+            <th class="w-2/12 md:w-1/12 px-1 py-3 text-left">
+              Ações
+            </th>
           </tr>
         </thead>
+      </table>
+    </div>
+    <div
+      v-if="loading"
+      class="flex justify-center items-center p-5"
+    >
+      <svg
+
+        class="animate-spin h-10 w-10 text-wheel-400"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+      >
+        <circle
+          class="opacity-25"
+          cx="12"
+          cy="12"
+          r="10"
+          stroke="currentColor"
+          stroke-width="4"
+        />
+        <path
+          class="opacity-75"
+          fill="currentColor"
+          d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+        />
+      </svg>
+    </div>
+    <div
+      v-if="!loading"
+      class="h-full max-h-full overflow-y-scroll scrollbar-thin scrollbar-thumb-rounded-full transition-colors duration-500 scrollbar-thumb-wheel-25 dark:scrollbar-thumb-wheel-700 scrollbar-track-gray-200 dark:scrollbar-track-wheel-800"
+    >
+      <table class="table-fixed border-collapse w-full">
         <tbody>
-          <tr :class="theme" v-for="reward in filteredRewards" :key="reward._id">
-            <td :class="theme" class="name">
+          <tr
+            v-for="(reward, key) of filteredRewards"
+            :key="key"
+            class="border-b border-wheel-25 dark:border-opacity-10 border-opacity-25 hover:text-wheel-400 dark:hover:text-wheel-200 transition-all duration-500 text-wheel-0 dark:text-wheel-25"
+          >
+            <td class="w-3/12 md:w-3/12 text-sm px-1 py-2 text-left">
               <span v-if="selectedItem !== reward._id">
                 {{ reward.name }}
               </span>
               <span v-else>
                 <select
-                  class="edit-reward-select"
-                  :class="theme"
                   v-model="reward.name"
-                  placeholder="Recompensa"
+                  class="w-full disabled:cursor-not-allowed text-wheel-0 dark:text-wheel-25 bg-white dark:bg-wheel-800 border-wheel-25 border-opacity-25 transition-colors duration-500 rounded-md focus:border-wheel-400 focus:ring-0"
                   @change="reward.type = null, reward.action = null, reward.time = null"
                 >
-                  <option value=""></option>
+                  <option value="" />
                   <option
                     v-for="item in channelRewards"
                     :key="item.id"
                     :label="item.title"
-                    :value="item.title">
-                  </option>
+                    :value="item.title"
+                  />
                 </select>
               </span>
             </td>
-            <td :class="theme" class="type">
+            <td class="w-3/12 md:w-3/12 text-sm px-1 py-2 text-left">
               <span v-if="selectedItem !== reward._id">
                 {{ getTypeLabel(reward.type) }}
               </span>
               <span v-else>
                 <select
-                  class="edit-reward-select"
-                  :class="theme"
                   v-model="reward.type"
-                  placeholder="Tipo"
-                  @change="reward.action = null, reward.time = null"
+                  class="w-full disabled:cursor-not-allowed text-wheel-0 dark:text-wheel-25 bg-white dark:bg-wheel-800 border-wheel-25 border-opacity-25 transition-colors duration-500 rounded-md focus:border-wheel-400 focus:ring-0"
                   :disabled="!reward.name"
+                  @change="reward.action = null, reward.time = null"
                 >
-                  <option value=""></option>
+                  <option value="" />
                   <option
                     v-for="item in rewardTypes"
                     :key="item.value"
                     :label="item.label"
-                    :value="item.value">
-                  </option>
+                    :value="item.value"
+                  />
                 </select>
               </span>
             </td>
-            <td :class="theme" class="action">
+            <td class="w-2/12 md:w-3/12 text-sm px-1 py-2 text-left">
               <span v-if="selectedItem !== reward._id">
                 {{ getActionLabel(reward.action) }}
               </span>
               <span v-else>
                 <select
-                  class="edit-reward-select"
-                  :class="theme"
                   v-model="reward.action"
-                  placeholder="Ação"
-                  @change="reward.time = null"
+                  class="w-full disabled:cursor-not-allowed text-wheel-0 dark:text-wheel-25 bg-white dark:bg-wheel-800 border-wheel-25 border-opacity-25 transition-colors duration-500 rounded-md focus:border-wheel-400 focus:ring-0"
                   :disabled="reward.type !== 'command'"
+                  @change="reward.time = null"
                 >
-                  <option value=""></option>
+                  <option value="" />
                   <option
                     v-for="item in rewardActions"
                     :key="item.value"
                     :label="item.label"
-                    :value="item.value">
-                  </option>
+                    :value="item.value"
+                  />
                 </select>
               </span>
             </td>
-            <td :class="theme" class="time">
+            <td class="w-2/12 md:w-2/12 text-sm px-1 py-2 text-left">
               <span v-if="selectedItem !== reward._id">
                 {{ reward.time }}
               </span>
               <span v-else>
                 <input
+                  v-model="reward.time"
                   type="number"
                   min="0"
-                  v-model="reward.time"
-                  class="edit-reward-input"
-                  :class="theme"
+                  class="w-full disabled:cursor-not-allowed text-wheel-0 dark:text-wheel-25 bg-white dark:bg-wheel-800 border-wheel-25 border-opacity-25 transition-colors duration-500 rounded-md focus:border-wheel-400 focus:ring-0"
                   :disabled="reward.action !== 'timeout'"
                 >
               </span>
             </td>
-            <td :class="theme" class="actions">
+            <td class="w-2/12 md:w-1/12 px-1 py-2 text-left">
               <button
-                class="btn-circle btn-edit"
-                :class="theme"
+                class="inline-flex items-center justify-center mr-1 w-7 h-7 rounded-full disabled:cursor-not-allowed bg-wheel-400 bg-opacity-20 border border-wheel-400 border-opacity-30 focus:ring-0 focus:outline-none"
                 :disabled="!!selectedItem && selectedItem !== reward._id"
                 @click="editReward(reward)"
               >
-                <i
-                  class="material-icons"
+                <svg
                   v-if="selectedItem && selectedItem === reward._id"
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-4 w-4"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
                 >
-                  check
-                </i>
-                <i class="material-icons" v-else>edit</i>
+                  <path
+                    fill-rule="evenodd"
+                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+                <svg
+                  v-else
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-4 w-4"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
+                </svg>
               </button>
               <button
-                class="btn-circle btn-delete"
-                :class="theme"
+                class="inline-flex items-center justify-center mr-1 w-7 h-7 rounded-full disabled:cursor-not-allowed bg-red-500 bg-opacity-20 border border-red-500 border-opacity-30 focus:ring-0 focus:outline-none"
                 :disabled="!!selectedItem"
                 @click="deleteReward(reward._id)"
               >
-                <i class="material-icons">close</i>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-4 w-4"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
               </button>
             </td>
           </tr>
         </tbody>
       </table>
     </div>
-    <el-dialog :visible.sync="showExample" center custom-class="example-modal" :show-close="false">
-      <p><img src="../../assets/images/rewardsExample.png"></p>
-      <span slot="footer" class="dialog-footer">
-        <button
-          class="default-btn close-modal-btn example-btn"
-          @click="showExample = false"
-        >Fechar</button>
-      </span>
-    </el-dialog>
   </div>
 </template>
 
@@ -162,14 +212,13 @@ import axios from '@/repositories/clients/axios'
 import { mapState } from 'vuex'
 
 export default {
-  name: "RewardsTableContainer",
-
-  computed: {
-    ...mapState(['user', 'theme'])
-  },
+  name: 'RewardsTableContainer',
 
   props: {
-    channelRewards: Array
+    channelRewards: {
+      type: Array,
+      default: () => []
+    }
   },
 
   data: () => ({
@@ -178,86 +227,98 @@ export default {
     search: null,
     selectedItem: null,
     showExample: false,
+    loading: true,
     rewardTypes: [
       {
         value: 'wheel',
-        label: 'Roleta'
+        label: 'Girar Roleta'
       },
       {
         value: 'command',
-        label: 'Comando'
+        label: 'Executar Comando'
       }
     ],
     rewardActions: [
       {
         value: 'timeout',
-        label: 'Dar Timeout'
+        label: 'Dar Timeout no Alvo'
       },
       {
         value: 'untimeout',
-        label: 'Remover Timeout'
+        label: 'Remover Timeout do Alvo'
       }
     ]
   }),
 
-  mounted() {
-    this.getRewards();
+  computed: {
+    ...mapState(['user', 'theme'])
+  },
+
+  mounted () {
+    this.getRewards()
   },
 
   created () {
     EventBus.$on('get-rewards', () => {
-      this.getRewards();
+      this.getRewards()
     })
   },
 
   methods: {
-    async getRewards() {
-      const url = '/api/rewards';
+    async getRewards () {
+      this.loading = true
+      const url = '/api/rewards'
 
       try {
-        const response = await axios.get(url, { headers: { 
-          'x-auth-token': this.user.access_token,
-          'x-code': this.user.code
-        } });
+        const response = await axios.get(url, {
+          headers: {
+            'x-auth-token': this.user.access_token,
+            'x-code': this.user.code
+          }
+        })
 
-        this.rewards = response.data;
-        this.filterRewards();
+        this.rewards = response.data
+        this.filterRewards()
         if (!response.data.length) EventBus.$emit('reset-rewards')
       } catch (e) {
         this.$message.error(`Algo deu errado! Se o erro persistir, clique
-          em sair e faça login novamente`);
+          em sair e faça login novamente`)
       }
+
+      this.loading = false
     },
 
-    filterRewards() {
+    filterRewards () {
       if (this.search) {
         this.filteredRewards = this.rewards.filter(value =>
           value.name.toLowerCase().includes(this.search.toLowerCase())
-        );
+        )
       } else {
-        this.filteredRewards = this.rewards;
+        this.filteredRewards = this.rewards
       }
     },
 
-    async deleteReward(id) {
-      const url = `/api/rewards/${id}`;
+    async deleteReward (id) {
+      const url = `/api/rewards/${id}`
 
       try {
-        await axios.delete(url, { headers: { 
-          'x-auth-token': this.user.access_token,
-          'x-code': this.user.code
-        } });
+        await axios.delete(url, {
+          headers: {
+            'x-auth-token': this.user.access_token,
+            'x-code': this.user.code
+          }
+        })
 
-        this.getRewards();
+        this.getRewards()
       } catch (e) {
-        this.$message.error('Ops, não foi possível excluir este item');
+        this.$message.error('Ops, não foi possível excluir este item')
       }
     },
 
-    async editReward(item) {
+    async editReward (item) {
       if (this.selectedItem !== item._id) {
-        this.selectedItem = item._id;
-        return;
+        this.selectedItem = item._id
+        return
       }
 
       const sameReward = this.rewards.find(
@@ -268,19 +329,21 @@ export default {
 
       await this.updateReward(item)
 
-      this.selectedItem = null;
+      this.selectedItem = null
     },
 
     async updateReward (item) {
-      const url = `/api/rewards/${item._id}`;
+      const url = `/api/rewards/${item._id}`
 
       try {
-        await axios.patch(url, item, { headers: { 
-          'x-auth-token': this.user.access_token,
-          'x-code': this.user.code
-        } });
+        await axios.patch(url, item, {
+          headers: {
+            'x-auth-token': this.user.access_token,
+            'x-code': this.user.code
+          }
+        })
       } catch (e) {
-        this.$message.error('Ops, não foi possível editar este item');
+        this.$message.error('Ops, não foi possível editar este item')
       }
     },
 
@@ -301,262 +364,5 @@ export default {
       return rewardAction ? rewardAction.label : action
     }
   }
-};
+}
 </script>
-
-<style lang="scss">
-#rewards-table-container {
-  margin-top: 20px;
-  padding: 15px;
-  border-radius: 5px;
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  max-width: 600px;
-  &.light {
-    color: var(--color-text-base);
-    background-color: var(--color-box-light);
-    border: solid 1px var(--color-line-in-white);
-  }
-  &.dark {
-    color: var(--color-text-complement);
-    background-color: var(--color-box-dark);
-    border: solid 1px var(--color-background-darker);
-  }
-  .default-btn {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 4px 10px;
-    border: none;
-    border-radius: 5px;
-    font-size: 0.8em;
-    transition: background-color 0.2s;
-    margin: 5px 10px;
-    color: var(--color-title-in-primary);
-    i {
-      padding-right: 10px;
-    }
-    &.light {
-      background-color: var(--color-text-base);
-    }
-    &.dark {
-        background-color: var(--color-text-title);
-    }
-    cursor: pointer;
-    &:focus {
-      outline:0;
-    }
-    &:hover {
-      &.light {
-        background-color: var(--color-text-title);
-      }
-      &.dark {
-        background-color: var(--color-text-base);
-      }
-    }
-    &:disabled {
-      background-color: var(--color-text-complement);
-      cursor: default;
-      &.light {
-        background-color: var(--color-text-complement);
-      }
-      &.dark {
-        background-color: var(--color-text-base);
-      }
-    }
-  }
-  .example-btn {
-    color: var(--color-title-in-primary);
-    background-color: var(--color-primary-dark);
-    &:hover {
-      background-color: var(--color-primary-darker);
-    }
-  }
-  .example-modal {
-    background-color: transparent;
-    box-shadow: none;
-    .el-dialog__body {
-      text-align: center;
-      padding: 0;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-    .el-dialog__footer {
-      display: flex;
-      justify-content: center;
-    }
-  }
-  .close-modal-btn {
-    padding: 10px 15px;
-    font-size: 1em;
-  }
-  #table-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    padding-bottom: 10px;
-    &.light {
-      border-bottom: solid 1px var(--color-line-in-white);
-    }
-    &.dark {
-      border-bottom: solid 1px var(--color-background-darker);
-    }
-    h3 {
-      font-size: 1.4em;
-    }
-    .search {
-      display: flex;
-      justify-content: center;
-      input {
-        padding: 7px 10px;
-        width: 300px;
-        border: 1px solid var(--color-line-in-white);
-        border-radius: 5px;
-        &:focus {
-          outline:0;
-        }
-        &.light {
-          color: var(--color-text-base);
-          background-color: var(--color-box-light);
-          border: solid 1px var(--color-line-in-white);
-        }
-        &.dark {
-          color: var(--color-text-complement);
-          background-color: var(--color-background-dark);
-          border: solid 1px var(--color-background-darker);
-        }
-      }
-    }
-  }
-  #table-content {
-    height: 100%;
-    max-height: 570px;
-    overflow: auto;
-    table {
-      width: 100%;
-      text-align: left;
-      font-size: 0.9em;
-      tr th {
-        &.light {
-          background-color: var(--color-line-in-white)
-        }
-        &.dark {
-          background-color: var(--color-background-darker)
-        }
-      }
-      tr th, tr td {
-        padding: 15px 10px;
-        &.name {
-          width: 30%;
-        }
-        &.type {
-          width: 20%;
-        }
-        &.action {
-          width: 20%;
-        }
-        &.time {
-          width: 10%;
-        }
-        &.actions {
-          width: 10%;
-        }
-        .edit-reward-input, .edit-reward-select {
-          padding: 6px 10px;
-          width: 100%;
-          border: 1px solid var(--color-line-in-white);
-          border-radius: 5px;
-          &:focus {
-            outline:0;
-          }
-          &:disabled {
-            cursor: not-allowed;
-          }
-          &.light {
-            color: var(--color-text-base);
-            background-color: var(--color-box-light);
-            border: solid 1px var(--color-line-in-white);
-          }
-          &.dark {
-            color: var(--color-text-complement);
-            background-color: var(--color-background-dark);
-            border: solid 1px var(--color-background-darker);
-          }
-        }
-        .edit-reward-select {
-          height: 37px;
-        }
-      }
-      tr {
-        transition: background-color 0.2s;
-        td {
-          padding: 7px 10px;
-          .btn-circle {
-            border-radius: 50%;
-            width: 33px;
-            height: 33px;
-            padding: 5px 5px 5px 4px;
-            margin: 2px 3px;
-            cursor: pointer;
-            transition: background-color 0.2s;
-            &:focus {
-              outline:0;
-            }
-            i {
-              font-size: 1.4em;
-            }
-          }
-          .btn-edit {
-            color: var(--color-primary);
-            border: 1px solid var(--color-primary);
-            background-color: var(--color-primary-2);
-            &:hover {
-              background-color: var(--color-primary-4);
-            }
-            &:disabled {
-              color: var(--color-primary-4);
-              border: 1px solid var(--color-primary-4);
-              cursor: not-allowed;
-            }
-          }
-          .btn-delete {
-            color: var(--color-tertiary);
-            border: 1px solid var(--color-tertiary);
-            background-color: var(--color-tertiary-2);
-            &:hover {
-              background-color: var(--color-tertiary-4);
-            }
-            &:disabled {
-              color: var(--color-tertiary-4);
-              border: 1px solid var(--color-tertiary-4);
-              cursor: not-allowed;
-            }
-          }
-          &.light {
-            border-bottom: solid 1px var(--color-line-in-white);
-          }
-          &.dark {
-            border-bottom: solid 1px var(--color-background-darker);
-          }
-        }
-      }
-      tr:hover {
-        &.light {
-          background-color: var(--color-background-light);
-        }
-        &.dark {
-          background-color: var(--color-background-dark);
-        }
-      }
-    }
-  }
-}
-@media (min-width:960px) {
-  #rewards-table-container {
-    max-width: 100%;
-    height: 100%;
-  }
-}
-</style>

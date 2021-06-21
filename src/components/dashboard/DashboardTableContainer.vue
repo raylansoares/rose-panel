@@ -16,16 +16,16 @@
       <table class="table-fixed border-collapse w-full">
         <thead>
           <tr class="bg-wheel-25 bg-opacity-20 text-md font-bold transition-colors duration-500 text-wheel-0 dark:text-wheel-25">
-            <th class="w-5/12 md:w-4/12 px-1 py-4 text-left">
+            <th class="w-5/12 md:w-4/12 px-1 py-3 text-left">
               Usuário
             </th>
-            <th class="w-5/12 md:w-4/12 px-1 py-4 text-left">
+            <th class="w-5/12 md:w-4/12 px-1 py-3 text-left">
               Prêmio(s)
             </th>
-            <th class="w-3/12 px-1 py-4 text-left hidden md:table-cell">
+            <th class="w-3/12 px-1 py-3 text-left hidden md:table-cell">
               Data/Hora
             </th>
-            <th class="w-2/12 md:w-1/12 px-1 py-4 text-left">
+            <th class="w-2/12 md:w-1/12 px-1 py-3 text-left">
               Ações
             </th>
           </tr>
@@ -60,16 +60,16 @@
     </div>
     <div
       v-if="!loading"
-      class="h-full max-h-full overflow-y-scroll scrollbar-thin scrollbar-thumb-rounded-full transition-colors duration-300 scrollbar-thumb-wheel-25 dark:scrollbar-thumb-wheel-700 scrollbar-track-gray-200 dark:scrollbar-track-wheel-800"
+      class="h-full max-h-full overflow-y-scroll scrollbar-thin scrollbar-thumb-rounded-full transition-colors duration-500 scrollbar-thumb-wheel-25 dark:scrollbar-thumb-wheel-700 scrollbar-track-gray-200 dark:scrollbar-track-wheel-800"
     >
       <table class="table-fixed border-collapse w-full">
         <tbody>
           <tr
             v-for="(subscriber, key) of filteredSubscribers"
             :key="key"
-            class="border-b border-wheel-25 dark:border-opacity-10 border-opacity-25 hover:text-wheel-400 dark:hover:text-wheel-200 transition-all duration-300 text-wheel-0 dark:text-wheel-25"
+            class="border-b border-wheel-25 dark:border-opacity-10 border-opacity-25 hover:text-wheel-400 dark:hover:text-wheel-200 transition-all duration-500 text-wheel-0 dark:text-wheel-25"
           >
-            <td class="w-5/12 md:w-4/12 text-md px-1 py-2 text-left">
+            <td class="w-5/12 md:w-4/12 text-sm px-1 py-2 text-left">
               {{ subscriber.username }}
               <span
                 v-if="subscriber.origin"
