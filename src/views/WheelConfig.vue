@@ -3,14 +3,13 @@
 </template>
 
 <script>
-import WheelConfigContainer from "@/components/wheel/WheelConfigContainer";
+import WheelConfigContainer from '@/components/wheel/WheelConfigContainer'
 
 export default {
-  name: "WheelConfigView",
+  name: 'WheelConfigView',
 
   components: {
     WheelConfigContainer
   }
-};
+}
 </script>
-

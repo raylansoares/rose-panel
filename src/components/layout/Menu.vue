@@ -94,7 +94,7 @@
           v-model="username"
           type="text"
           placeholder="Nome do usuário"
-          class="w-9/12 text-wheel-0 dark:text-wheel-25 bg-white dark:bg-wheel-800 border-wheel-25 border-opacity-25 transition-colors duration-500 rounded-md focus:border-wheel-400 focus:ring-0"
+          class="w-9/12 placeholder-gray-200 dark:placeholder-wheel-700 text-wheel-0 dark:text-wheel-25 bg-white dark:bg-wheel-800 border-wheel-25 border-opacity-25 transition-colors duration-500 rounded-md focus:border-wheel-400 focus:ring-0"
         >
         <button
           class="flex items-center justify-center w-3/12 p-2 text-white transition-opacity duration-500 border border-transparent rounded-md focus:outline-none focus:ring-0 bg-wheel-400 hover:opacity-80 dark:bg-opacity-50"
@@ -128,7 +128,7 @@
           type="number"
           min="0"
           placeholder="Quantidade de bits"
-          class="w-10/12 text-wheel-0 dark:text-wheel-25 bg-white dark:bg-wheel-800 border-wheel-25 border-opacity-25 transition-colors duration-500 rounded-md focus:border-wheel-400 focus:ring-0"
+          class="w-10/12 placeholder-gray-200 dark:placeholder-wheel-700 text-wheel-0 dark:text-wheel-25 bg-white dark:bg-wheel-800 border-wheel-25 border-opacity-25 transition-colors duration-500 rounded-md focus:border-wheel-400 focus:ring-0"
         >
         <button
           class="flex items-center justify-center w-3/12 p-2 text-white transition-opacity duration-500 border border-transparent rounded-md focus:outline-none focus:ring-0 bg-wheel-400 hover:opacity-80 dark:bg-opacity-50"
