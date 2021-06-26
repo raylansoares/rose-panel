@@ -1,5 +1,5 @@
 <template>
-  <div class="flex-col h-full w-full md:w-3/12 space-y-3">
+  <div class="flex-col h-full w-full md:w-3/12 space-y-3 pb-4 overflow-y-scroll scrollbar-thin scrollbar-thumb-rounded-full">
     <div
       class="flex-col w-full p-6 transition-colors duration-500 bg-white dark:bg-black bg-opacity-50 dark:bg-opacity-25 rounded-lg border border-wheel-25 dark:border-wheel-700 border-opacity-25"
     >

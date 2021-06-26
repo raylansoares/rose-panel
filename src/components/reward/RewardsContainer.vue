@@ -1,5 +1,5 @@
 <template>
-  <div class="flex-col space-y-3 h-full w-full md:w-9/12 pb-5">
+  <div class="flex-col space-y-3 h-full w-full md:w-9/12 pb-44">
     <RewardsRegisterContainer
       :channel-rewards="channelRewards"
       @get-rewards="getRewards()"

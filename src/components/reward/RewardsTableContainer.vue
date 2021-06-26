@@ -1,5 +1,5 @@
 <template>
-  <div class="flex-col h-auto w-full p-5 transition-colors duration-500 bg-white dark:bg-black bg-opacity-50 dark:bg-opacity-25 rounded-lg border border-wheel-25 dark:border-wheel-700 border-opacity-25">
+  <div class="flex-col h-auto w-full p-5 pb-28 transition-colors duration-500 bg-white dark:bg-black bg-opacity-50 dark:bg-opacity-25 rounded-lg border border-wheel-25 dark:border-wheel-700 border-opacity-25">
     <div class="flex items-center justify-between mb-3">
       <div class="text-xl font-bold transition-colors duration-500 text-wheel-0 dark:text-wheel-25">
         Recompensas Vinculadas
@@ -9,7 +9,7 @@
         type="text"
         :disabled="!!selectedItem"
         placeholder="Buscar por nome da recompensa"
-        class="w-4/12 text-wheel-0 dark:text-wheel-25 bg-white dark:bg-wheel-800 border-wheel-25 border-opacity-25 transition-colors duration-500 rounded-md focus:border-wheel-400 focus:ring-0"
+        class="w-4/12 placeholder-gray-200 dark:placeholder-wheel-700 text-wheel-0 dark:text-wheel-25 bg-white dark:bg-wheel-800 border-wheel-25 border-opacity-25 transition-colors duration-500 rounded-md focus:border-wheel-400 focus:ring-0"
         @input="filterRewards()"
       >
     </div>
@@ -17,19 +17,19 @@
       <table class="table-fixed border-collapse w-full">
         <thead>
           <tr class="bg-wheel-25 bg-opacity-20 text-md font-bold transition-colors duration-500 text-wheel-0 dark:text-wheel-25">
-            <th class="w-3/12 md:w-3/12 px-1 py-3 text-left">
+            <th class="w-3/12 lg:w-4/12 px-1 py-3 text-left">
               Recompensa
             </th>
-            <th class="w-3/12 md:w-3/12 px-1 py-3 text-left">
+            <th class="w-3/12 px-1 py-3 text-left">
               Ação
             </th>
-            <th class="w-3/12 md:w-3/12 px-1 py-3 text-left">
+            <th class="w-3/12 px-1 py-3 text-left">
               Comando
             </th>
-            <th class="w-2/12 md:w-2/12 px-1 py-3 text-left">
+            <th class="w-2/12 px-1 py-3 text-left">
               Tempo
             </th>
-            <th class="w-2/12 md:w-1/12 px-1 py-3 text-left">
+            <th class="w-2/12 lg:w-1/12 pl-1 pr-3 py-3 text-right">
               Ações
             </th>
           </tr>
@@ -149,7 +149,7 @@
                 >
               </span>
             </td>
-            <td class="w-2/12 md:w-1/12 px-1 py-2 text-left">
+            <td class="w-2/12 px-1 py-2 text-right">
               <button
                 class="inline-flex items-center justify-center mr-1 w-7 h-7 rounded-full disabled:cursor-not-allowed bg-wheel-400 bg-opacity-20 border border-wheel-400 border-opacity-30 focus:ring-0 focus:outline-none"
                 :disabled="!!selectedItem && selectedItem !== reward._id"
