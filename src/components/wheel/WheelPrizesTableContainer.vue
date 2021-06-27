@@ -54,13 +54,13 @@
       <table class="table-fixed border-collapse w-full">
         <thead>
           <tr class="bg-wheel-25 bg-opacity-20 text-sm font-bold transition-colors duration-500 text-wheel-0 dark:text-wheel-25">
-            <th class="w-4/12 px-1 py-3 text-left">
+            <th class="w-5/12 px-1 py-3 text-left">
               Nome/Mensagem
             </th>
             <th class="w-auto px-1 py-3 text-left">
               Comando/Delay
             </th>
-            <th class="w-24 px-1 py-3 text-left">
+            <th class="w-20 px-1 py-3 text-left">
               Cores
             </th>
             <th class="w-28 px-1 py-3 text-left">
@@ -125,7 +125,7 @@
                 <tr
                   class="border-b border-wheel-25 dark:border-opacity-10 border-opacity-25 hover:text-wheel-400 dark:hover:text-wheel-200 transition-all duration-500 text-wheel-0 dark:text-wheel-25"
                 >
-                  <td class="w-4/12 text-sm px-1 py-2 text-left">
+                  <td class="w-5/12 text-sm px-1 py-2 text-left">
                     <div v-if="selectedItem !== prize._id">
                       <div>{{ prize.name }}</div>
                       <div class="text-xs">
@@ -187,10 +187,14 @@
                       >
                     </div>
                   </td>
-                  <td class="w-24 text-sm px-1 py-2 text-left">
+                  <td class="w-20 text-sm px-1 py-2 text-left">
                     <div v-if="selectedItem !== prize._id">
-                      <div>{{ prize.color }}</div>
-                      <div>{{ prize.text_color }}</div>
+                      <div
+                        class="border p-1 font-bold mr-3 text-center"
+                        :style="`background-color:${prize.color}; color:${prize.text_color}`"
+                      >
+                        Prêmio
+                      </div>
                     </div>
                     <div
                       v-else
@@ -199,26 +203,53 @@
                       <label class="text-sm transition-colors duration-500 text-wheel-0 dark:text-wheel-25">
                         Fundo
                       </label>
-                      <input
-                        v-model="prize.color"
-                        type="text"
-                        class="w-full disabled:cursor-not-allowed text-wheel-0 dark:text-wheel-25 bg-white dark:bg-wheel-800 border-wheel-25 border-opacity-25 transition-colors duration-500 rounded-md focus:border-wheel-400 focus:ring-0"
-                      >
+                      <el-color-picker v-model="prize.color" />
                       <label class="text-sm transition-colors duration-500 text-wheel-0 dark:text-wheel-25">
                         Texto
                       </label>
-                      <input
-                        v-model="prize.text_color"
-                        type="text"
-                        class="w-full disabled:cursor-not-allowed text-wheel-0 dark:text-wheel-25 bg-white dark:bg-wheel-800 border-wheel-25 border-opacity-25 transition-colors duration-500 rounded-md focus:border-wheel-400 focus:ring-0"
-                      >
+                      <el-color-picker v-model="prize.text_color" />
                     </div>
                   </td>
                   <td class="w-28 text-sm px-1 py-2 text-left">
                     <div v-if="selectedItem !== prize._id">
-                      <div>{{ prize.size }}%</div>
+                      <div>{{ prize.size ? prize.size + '%' : 'Automático' }}</div>
                       <div>
-                        {{ prize.enabled ? 'Ativo' : 'Inativo' }}
+                        <span
+                          v-if="prize.enabled"
+                          class="text-green-600 flex"
+                        >
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="h-5 w-5"
+                            viewBox="0 0 20 20"
+                            fill="currentColor"
+                          >
+                            <path
+                              fill-rule="evenodd"
+                              d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                              clip-rule="evenodd"
+                            />
+                          </svg>
+                          Ativo
+                        </span>
+                        <span
+                          v-else
+                          class="text-red-500 flex"
+                        >
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="h-5 w-5 cursor-pointer"
+                            viewBox="0 0 20 20"
+                            fill="currentColor"
+                          >
+                            <path
+                              fill-rule="evenodd"
+                              d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
+                              clip-rule="evenodd"
+                            />
+                          </svg>
+                          Inativo
+                        </span>
                       </div>
                     </div>
                     <div
@@ -228,20 +259,43 @@
                       <label class="text-sm transition-colors duration-500 text-wheel-0 dark:text-wheel-25">
                         Chance
                       </label>
-                      <input
+                      <el-slider
                         v-model="prize.size"
-                        type="number"
-                        min="0"
-                        class="w-full disabled:cursor-not-allowed text-wheel-0 dark:text-wheel-25 bg-white dark:bg-wheel-800 border-wheel-25 border-opacity-25 transition-colors duration-500 rounded-md focus:border-wheel-400 focus:ring-0"
-                      >
+                        :step="1"
+                      />
                       <label class="text-sm transition-colors duration-500 text-wheel-0 dark:text-wheel-25">
                         Status
                       </label>
-                      <input
-                        v-model="prize.enabled"
-                        type="text"
-                        class="w-full disabled:cursor-not-allowed text-wheel-0 dark:text-wheel-25 bg-white dark:bg-wheel-800 border-wheel-25 border-opacity-25 transition-colors duration-500 rounded-md focus:border-wheel-400 focus:ring-0"
-                      >
+                      <div class="flex">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          class="h-10 w-10 cursor-pointer"
+                          :class="prize.enabled ? 'text-green-600' : 'text-gray-400 text-opacity-30'"
+                          viewBox="0 0 20 20"
+                          fill="currentColor"
+                          @click="prize.enabled = true"
+                        >
+                          <path
+                            fill-rule="evenodd"
+                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                            clip-rule="evenodd"
+                          />
+                        </svg>
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          class="h-10 w-10 cursor-pointer"
+                          :class="!prize.enabled ? 'text-red-500' : 'text-gray-400 text-opacity-30'"
+                          viewBox="0 0 20 20"
+                          fill="currentColor"
+                          @click="prize.enabled = false"
+                        >
+                          <path
+                            fill-rule="evenodd"
+                            d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
+                            clip-rule="evenodd"
+                          />
+                        </svg>
+                      </div>
                     </div>
                   </td>
                   <td class="w-24 px-1 py-2 text-center">

@@ -5,15 +5,15 @@
 </template>
 
 <script>
-import Wheel from "@/components/wheel/Wheel";
+import Wheel from '@/components/wheel/Wheel'
 
 export default {
-  name: "WheelView",
+  name: 'WheelView',
 
   components: {
     Wheel
   }
-};
+}
 </script>
 
 <style lang="scss">

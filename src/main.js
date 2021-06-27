@@ -3,15 +3,18 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import AxiosClient from './repositories/clients/axios'
-// import ElementUI from 'element-ui'
-// import locale from 'element-ui/lib/locale/lang/en'
 import VueSocketIO from 'vue-socket.io'
 
-// import "element-ui/lib/theme-chalk/index.css";
-// import "./global.scss";
+import { ColorPicker, Slider } from 'element-ui'
+import lang from 'element-ui/lib/locale/lang/pt-br'
+import locale from 'element-ui/lib/locale'
+
 import './index.css'
 
-// Vue.use(ElementUI, { locale })
+locale.use(lang)
+
+Vue.use(ColorPicker)
+Vue.use(Slider)
 
 Vue.use(new VueSocketIO({
   debug: false,

@@ -11,3 +11,11 @@ html, body {
   scroll-behavior: smooth;
   background: transparent !important;
 }
+
+.el-slider__bar {
+  background-color: #8e4af8;
+}
+
+.el-slider__button {
+  border: 2px solid #8e4af8;
+}

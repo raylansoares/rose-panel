@@ -4,7 +4,7 @@
       Cadastrar Prêmio na Roleta
     </div>
     <div class="flex flex-col items-end space-y-2 space-y-0 lg:space-x-1 lg:space-y-0 lg:flex-row">
-      <div class="w-full lg:w-3/12">
+      <div class="w-full lg:w-4/12">
         <label class="text-sm transition-colors duration-500 text-wheel-0 dark:text-wheel-25">
           Nome do prêmio
         </label>
@@ -25,26 +25,6 @@
           class="w-full placeholder-gray-200 dark:placeholder-wheel-700 disabled:cursor-not-allowed text-wheel-0 dark:text-wheel-25 bg-white dark:bg-wheel-800 border-wheel-25 border-opacity-25 transition-colors duration-500 rounded-md focus:border-wheel-400 focus:ring-0"
         >
       </div>
-      <div class="w-full lg:w-1/12">
-        <label class="text-sm transition-colors duration-500 text-wheel-0 dark:text-wheel-25">
-          Cor
-        </label>
-        <input
-          v-model="prize.color"
-          type="text"
-          class="w-full disabled:cursor-not-allowed text-wheel-0 dark:text-wheel-25 bg-white dark:bg-wheel-800 border-wheel-25 border-opacity-25 transition-colors duration-500 rounded-md focus:border-wheel-400 focus:ring-0"
-        >
-      </div>
-      <div class="w-full lg:w-1/12">
-        <label class="text-sm transition-colors duration-500 text-wheel-0 dark:text-wheel-25">
-          Texto
-        </label>
-        <input
-          v-model="prize.text_color"
-          type="text"
-          class="w-full disabled:cursor-not-allowed text-wheel-0 dark:text-wheel-25 bg-white dark:bg-wheel-800 border-wheel-25 border-opacity-25 transition-colors duration-500 rounded-md focus:border-wheel-400 focus:ring-0"
-        >
-      </div>
       <div class="w-full lg:w-2/12">
         <label class="text-sm transition-colors duration-500 text-wheel-0 dark:text-wheel-25">
           Comando
@@ -55,7 +35,7 @@
           class="w-full disabled:cursor-not-allowed text-wheel-0 dark:text-wheel-25 bg-white dark:bg-wheel-800 border-wheel-25 border-opacity-25 transition-colors duration-500 rounded-md focus:border-wheel-400 focus:ring-0"
         >
       </div>
-      <div class="w-full lg:w-2/12">
+      <div class="w-full lg:w-20">
         <label class="text-sm transition-colors duration-500 text-wheel-0 dark:text-wheel-25">
           Delay
         </label>
@@ -65,6 +45,18 @@
           min="0"
           class="w-full disabled:cursor-not-allowed text-wheel-0 dark:text-wheel-25 bg-white dark:bg-wheel-800 border-wheel-25 border-opacity-25 transition-colors duration-500 rounded-md focus:border-wheel-400 focus:ring-0"
         >
+      </div>
+      <div class="flex flex-col w-full lg:w-auto pb-0.5">
+        <label class="text-sm transition-colors duration-500 text-wheel-0 dark:text-wheel-25 pb-0.5">
+          Cor
+        </label>
+        <el-color-picker v-model="prize.color" />
+      </div>
+      <div class="flex flex-col w-full lg:w-auto pb-0.5">
+        <label class="text-sm transition-colors duration-500 text-wheel-0 dark:text-wheel-25 pb-0.5">
+          Texto
+        </label>
+        <el-color-picker v-model="prize.text_color" />
       </div>
       <div class="w-full lg:w-1/12">
         <button
