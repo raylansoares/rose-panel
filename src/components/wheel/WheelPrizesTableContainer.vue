@@ -5,8 +5,8 @@
         Prêmios da Roleta
       </div>
       <!--
-          <button
-          class="flex disabled:opacity-50 disabled:cursor-not-allowed items-center justify-center w-4/12 p-2 text-white transition-opacity duration-500 border border-transparent rounded-md focus:outline-none focus:ring-0 bg-wheel-400 hover:opacity-80 dark:bg-opacity-50"
+        <button
+          class="flex space-x-1 disabled:opacity-50 disabled:cursor-not-allowed items-center justify-center text-sm h-8 w-28 px-2 py-1 text-white transition-opacity duration-500 border border-transparent rounded-md focus:outline-none focus:ring-0 bg-wheel-400 hover:opacity-80 dark:bg-opacity-50"
           :disabled="selectedItem || sort"
           @click="showPreview()"
         >
@@ -25,30 +25,49 @@
           </svg>
           <span class="text-sm px-1">Visualizar Roleta</span>
         </button> -->
-      <button
-        class="default-btn"
-        :class="sort ? `sorting-btn ${theme}` : theme"
-        :disabled="!!selectedItem || sorting"
-        @click="togleSort()"
-      >
-        <i
-          v-if="sort"
-          class="material-icons"
-        >check</i>
-        <i
-          v-else
-          class="material-icons"
-        >reorder</i>
-        {{ sort ? 'Salvar Ordernção' : 'Alterar Ordernção' }}
-      </button>
-      <input
-        v-model="search"
-        type="text"
-        :disabled="sort || !!selectedItem"
-        placeholder="Buscar prêmio"
-        class="w-4/12 placeholder-gray-200 dark:placeholder-wheel-700 text-wheel-0 dark:text-wheel-25 bg-white dark:bg-wheel-800 border-wheel-25 border-opacity-25 transition-colors duration-500 rounded-md focus:border-wheel-400 focus:ring-0"
-        @input="filterPrizes()"
-      >
+
+      <div class="flex w-6/12 space-x-1 justify-right items-center">
+        <button
+          class="flex space-x-1 disabled:opacity-50 disabled:cursor-not-allowed items-center justify-center text-sm h-8 w-28 px-2 py-1 text-white transition-opacity duration-500 border border-transparent rounded-md focus:outline-none focus:ring-0 bg-wheel-400 hover:opacity-80 dark:bg-opacity-50"
+          :disabled="!!selectedItem || sorting"
+          @click="togleSort()"
+        >
+          <svg
+            v-if="sort"
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-4 w-4"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M5 13l4 4L19 7"
+            />
+          </svg>
+          <svg
+            v-else
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-4 w-4"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+          >
+            <path d="M5 12a1 1 0 102 0V6.414l1.293 1.293a1 1 0 001.414-1.414l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L5 6.414V12zM15 8a1 1 0 10-2 0v5.586l-1.293-1.293a1 1 0 00-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L15 13.586V8z" />
+          </svg>
+          <span>{{ sort ? 'Salvar' : 'Reordenar' }}</span>
+        </button>
+
+        <input
+          v-model="search"
+          type="text"
+          :disabled="sort || !!selectedItem"
+          placeholder="Buscar prêmio"
+          class="w-full placeholder-gray-200 dark:placeholder-wheel-700 text-wheel-0 dark:text-wheel-25 bg-white dark:bg-wheel-800 border-wheel-25 border-opacity-25 transition-colors duration-500 rounded-md focus:border-wheel-400 focus:ring-0"
+          @input="filterPrizes()"
+        >
+      </div>
     </div>
     <div>
       <table class="table-fixed border-collapse w-full">
