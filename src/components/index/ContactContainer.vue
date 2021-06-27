@@ -4,7 +4,7 @@
       <div class="flex justify-center pb-5 text-center text-5xl font-bold transition-colors duration-500 text-wheel-400 dark:text-wheel-50">
         Contato
       </div>
-      <div class="text-center md:text-lg pt-1 transition-colors duration-500 text-wheel-500 dark:text-wheel-25">
+      <div class="text-center lg:text-lg pt-1 transition-colors duration-500 text-wheel-500 dark:text-wheel-25">
         <p class="pb-3">
           Tem alguma dúvida ou sugestão? Entre em contato pelo E-mail:
         </p>

@@ -1,5 +1,5 @@
 <template>
-  <div class="flex-col h-full pb-28 w-full p-5 transition-colors duration-500 bg-white dark:bg-black bg-opacity-50 dark:bg-opacity-25 rounded-lg border border-wheel-25 dark:border-wheel-700 border-opacity-25">
+  <div class="flex-col  h-auto lg:h-full pb-4 lg:pb-28 w-full p-5 transition-colors duration-500 bg-white dark:bg-black bg-opacity-50 dark:bg-opacity-25 rounded-lg border border-wheel-25 dark:border-wheel-700 border-opacity-25">
     <div class="flex items-center justify-between mb-3">
       <div class="text-xl font-bold transition-colors duration-500 text-wheel-0 dark:text-wheel-25">
         Roletas Resgatadas
@@ -15,17 +15,17 @@
     <div>
       <table class="table-fixed border-collapse w-full">
         <thead>
-          <tr class="bg-wheel-25 bg-opacity-20 text-md font-bold transition-colors duration-500 text-wheel-0 dark:text-wheel-25">
-            <th class="w-5/12 md:w-3/12 px-1 py-3 text-left">
+          <tr class="bg-wheel-25 bg-opacity-20 text-sm font-bold transition-colors duration-500 text-wheel-0 dark:text-wheel-25">
+            <th class="w-4/12 px-1 py-3 text-left">
               Usuário
             </th>
-            <th class="w-5/12 md:w-4/12 px-1 py-3 text-left">
+            <th class="w-auto px-1 py-3 text-left">
               Prêmio(s)
             </th>
-            <th class="w-3/12 px-1 py-3 text-left hidden md:table-cell">
+            <th class="w-28 px-1 py-3 text-left hidden lg:table-cell">
               Data/Hora
             </th>
-            <th class="w-2/12 pl-1 pr-3 py-3 text-right">
+            <th class="w-24 px-1 py-3 text-center">
               Ações
             </th>
           </tr>
@@ -69,31 +69,33 @@
             :key="key"
             class="border-b border-wheel-25 dark:border-opacity-10 border-opacity-25 hover:text-wheel-400 dark:hover:text-wheel-200 transition-all duration-500 text-wheel-0 dark:text-wheel-25"
           >
-            <td class="w-5/12 md:w-3/12 text-sm px-1 py-2 text-left">
+            <td class="w-4/12 text-md px-1 py-2 text-left">
               {{ subscriber.username }}
               <span
                 v-if="subscriber.origin"
-                class="text-xs bg-wheel-400 bg-opacity-20 rounded-sm border border-wheel-400 border-opacity-30 py-0.5 px-1"
+                class="text-xs text-wheel-400"
               >
                 {{ subscriber.origin }}
                 {{ subscriber.quantity ? ` x${subscriber.quantity}` : '' }}
               </span>
             </td>
-            <td class="w-5/12 md:w-4/12 text-sm px-1 py-2 text-left">
-              <span
-                v-for="(prize, index) in subscriber.prizes"
-                :key="index"
-                class="prize-tag"
-              >
-                {{ prize.name }}
-              </span>
+            <td class="w-auto text-sm px-1 py-2 text-left">
+              <div class="flex flex-wrap w-full">
+                <span
+                  v-for="(prize, index) in subscriber.prizes"
+                  :key="index"
+                  class="text-sm bg-wheel-400 bg-opacity-10 rounded-sm border border-wheel-400 border-opacity-20 px-1 py-0.5 m-0.5"
+                >
+                  {{ prize.name }}
+                </span>
+              </div>
             </td>
-            <td class="w-3/12 text-sm px-1 py-2 text-left hidden md:table-cell">
+            <td class="w-28 text-sm px-1 py-2 text-left hidden lg:table-cell">
               {{ subscriber.created_at | formatDate }}
             </td>
-            <td class="w-2/12 px-1 py-2 text-right">
+            <td class="w-24 px-1 py-2 text-center">
               <button
-                class="inline-flex items-center justify-center mr-1 w-7 h-7 rounded-full bg-wheel-400 bg-opacity-20 border border-wheel-400 border-opacity-30 focus:ring-0 focus:outline-none"
+                class="inline-flex items-center justify-center mr-1 w-8 h-8 rounded-full text-wheel-400 bg-wheel-400 bg-opacity-20 border border-wheel-400 border-opacity-50 focus:ring-0 focus:outline-none"
                 @click="retryWheel(subscriber)"
               >
                 <svg
@@ -112,7 +114,7 @@
                 </svg>
               </button>
               <button
-                class="inline-flex items-center justify-center mr-1 w-7 h-7 rounded-full bg-red-500 bg-opacity-20 border border-red-500 border-opacity-30 focus:ring-0 focus:outline-none"
+                class="inline-flex items-center justify-center mr-1 w-8 h-8 rounded-full text-red-500 bg-red-500 bg-opacity-20 border border-red-500 border-opacity-50 focus:ring-0 focus:outline-none"
                 @click="deleteSubscriber(subscriber._id)"
               >
                 <svg

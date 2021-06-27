@@ -1,5 +1,5 @@
 <template>
-  <div class="flex-col h-full w-full md:w-3/12 space-y-3 pb-4 overflow-y-scroll scrollbar-thin scrollbar-thumb-rounded-full">
+  <div class="flex-col h-full w-full lg:w-3/12 space-y-3 pb-4 overflow-y-scroll scrollbar-thin scrollbar-thumb-rounded-full">
     <div
       class="flex-col w-full p-6 transition-colors duration-500 bg-white dark:bg-black bg-opacity-50 dark:bg-opacity-25 rounded-lg border border-wheel-25 dark:border-wheel-700 border-opacity-25"
     >
@@ -42,11 +42,12 @@
         >
           <path
             fill-rule="evenodd"
-            d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z"
+            d="M5 5a3 3 0 015-2.236A3 3 0 0114.83 6H16a2 2 0 110 4h-5V9a1 1 0 10-2 0v1H4a2 2 0 110-4h1.17C5.06 5.687 5 5.35 5 5zm4 1V5a1 1 0 10-1 1h1zm3 0a1 1 0 10-1-1v1h1z"
             clip-rule="evenodd"
           />
+          <path d="M9 11H3v5a2 2 0 002 2h4v-7zM11 18h4a2 2 0 002-2v-5h-6v7z" />
         </svg>
-        <span>Configurar Roleta</span>
+        <span>Prêmios da Roleta</span>
       </router-link>
 
       <router-link
@@ -94,7 +95,7 @@
           v-model="username"
           type="text"
           placeholder="Nome do usuário"
-          class="w-9/12 placeholder-gray-200 dark:placeholder-wheel-700 text-wheel-0 dark:text-wheel-25 bg-white dark:bg-wheel-800 border-wheel-25 border-opacity-25 transition-colors duration-500 rounded-md focus:border-wheel-400 focus:ring-0"
+          class="w-10/12 text-wheel-0 dark:text-wheel-25 bg-white dark:bg-wheel-800 border-wheel-25 border-opacity-25 transition-colors duration-500 rounded-md focus:border-wheel-400 focus:ring-0"
         >
         <button
           class="flex items-center justify-center w-3/12 p-2 text-white transition-opacity duration-500 border border-transparent rounded-md focus:outline-none focus:ring-0 bg-wheel-400 hover:opacity-80 dark:bg-opacity-50"
@@ -128,7 +129,7 @@
           type="number"
           min="0"
           placeholder="Quantidade de bits"
-          class="w-10/12 placeholder-gray-200 dark:placeholder-wheel-700 text-wheel-0 dark:text-wheel-25 bg-white dark:bg-wheel-800 border-wheel-25 border-opacity-25 transition-colors duration-500 rounded-md focus:border-wheel-400 focus:ring-0"
+          class="w-10/12 text-wheel-0 dark:text-wheel-25 bg-white dark:bg-wheel-800 border-wheel-25 border-opacity-25 transition-colors duration-500 rounded-md focus:border-wheel-400 focus:ring-0"
         >
         <button
           class="flex items-center justify-center w-3/12 p-2 text-white transition-opacity duration-500 border border-transparent rounded-md focus:outline-none focus:ring-0 bg-wheel-400 hover:opacity-80 dark:bg-opacity-50"

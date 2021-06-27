@@ -4,8 +4,8 @@
     :class="theme"
   >
     <TopBar @set-theme="setTheme($event)" />
-    <div class="flex justify-center px-5 pt-14 h-auto md:h-full w-full transition-colors duration-500 bg-wheel-50 dark:bg-wheel-800">
-      <div class="flex flex-col md:flex-row w-full space-y-3 md:space-y-0 space-x-0 md:space-x-3 justify-center max-w-screen-xl pt-5">
+    <div class="flex justify-center px-5 pt-14 h-auto lg:h-full w-full transition-colors duration-500 bg-wheel-50 dark:bg-wheel-800">
+      <div class="flex flex-col lg:flex-row w-full space-y-3 lg:space-y-0 space-x-0 lg:space-x-3 justify-center max-w-screen-xl pt-5">
         <Menu />
         <router-view />
       </div>

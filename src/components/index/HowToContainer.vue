@@ -8,7 +8,7 @@
         Como Funciona?
       </div>
 
-      <div class="text-center md:text-lg pt-1 transition-colors duration-500 text-wheel-500 dark:text-wheel-25">
+      <div class="text-center lg:text-lg pt-1 transition-colors duration-500 text-wheel-500 dark:text-wheel-25">
         <p class="pb-3">
           Primeiro você cria as recompensas que deseja colocar na roleta, com as cores e porcentagens que desejar.
           Em seguida, basta adicionar um overlay no OBS com o link personalizado da sua roleta.

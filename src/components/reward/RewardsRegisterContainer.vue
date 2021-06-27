@@ -3,8 +3,8 @@
     <div class="text-xl font-bold transition-colors duration-500 text-wheel-0 dark:text-wheel-25">
       Vincular Recompensa da Twitch
     </div>
-    <div class="flex flex-col items-end space-y-2 space-y-0 md:space-x-1 md:space-y-0 md:flex-row">
-      <div class="w-full md:w-3/12">
+    <div class="flex flex-col items-end space-y-2 space-y-0 lg:space-x-1 lg:space-y-0 lg:flex-row">
+      <div class="w-full lg:w-3/12">
         <label class="text-sm transition-colors duration-500 text-wheel-0 dark:text-wheel-25">
           Selecione a recompensa
         </label>
@@ -22,7 +22,7 @@
           />
         </select>
       </div>
-      <div class="w-full md:w-3/12">
+      <div class="w-full lg:w-3/12">
         <label class="text-sm transition-colors duration-500 text-wheel-0 dark:text-wheel-25">
           Ação a ser executada
         </label>
@@ -41,7 +41,7 @@
           />
         </select>
       </div>
-      <div class="w-full md:w-3/12">
+      <div class="w-full lg:w-3/12">
         <label class="text-sm transition-colors duration-500 text-wheel-0 dark:text-wheel-25">
           Comando
         </label>
@@ -60,7 +60,7 @@
           />
         </select>
       </div>
-      <div class="w-full md:w-2/12">
+      <div class="w-full lg:w-2/12">
         <label class="text-sm transition-colors duration-500 text-wheel-0 dark:text-wheel-25">
           Tempo <span class="text-xs">segundos</span>
         </label>
@@ -72,7 +72,7 @@
           :disabled="reward.action !== 'timeout'"
         >
       </div>
-      <div class="w-full md:w-1/12">
+      <div class="w-full lg:w-1/12">
         <button
           class="flex disabled:opacity-50 disabled:cursor-not-allowed items-center justify-center w-full p-2 text-white transition-opacity duration-500 border border-transparent rounded-md focus:outline-none focus:ring-0 bg-wheel-400 hover:opacity-80 dark:bg-opacity-50"
           :disabled="!validReward()"

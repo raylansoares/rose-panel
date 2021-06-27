@@ -1,7 +1,7 @@
 <template>
   <div class="flex justify-center h-screen transition-colors duration-500 bg-wheel-50 dark:bg-wheel-800">
     <div class="flex-col self-center w-full max-w-screen-xl">
-      <div class="flex justify-center w-full h-64 md:h-96 pb-2 md:pb-5 pt-5 md:pt-0">
+      <div class="flex justify-center w-full h-64 lg:h-96 pb-2 lg:pb-5 pt-5 lg:pt-0">
         <img
           src="../../assets/images/wheel.svg"
           alt="Roleta do Subscriber"
@@ -12,13 +12,13 @@
           <div class="flex justify-center text-center text-5xl font-bold transition-colors duration-500 text-wheel-400 dark:text-wheel-50">
             Roleta do Subscriber
           </div>
-          <div class="flex justify-center text-center md:text-lg pt-1 transition-colors duration-500 text-wheel-500 dark:text-wheel-100">
+          <div class="flex justify-center text-center lg:text-lg pt-1 transition-colors duration-500 text-wheel-500 dark:text-wheel-100">
             Roleta automática e personalizável para subscribers, bits e recompensas de pontos de canal da Twitch.
           </div>
         </div>
-        <div class="flex flex-col md:flex-row justify-center pt-5 items-center">
+        <div class="flex flex-col lg:flex-row justify-center pt-5 items-center">
           <button
-            class="flex order-2 md:order-1 items-center justify-center w-8/12 md:w-4/12 lg:w-3/12 p-3 my-1 md:mx-2 text-white transition-opacity duration-500 border border-transparent rounded-md focus:outline-none focus:ring-0 bg-wheel-300 hover:opacity-80 dark:bg-opacity-50"
+            class="flex order-2 lg:order-1 items-center justify-center w-8/12 lg:w-4/12 lg:w-3/12 p-3 my-1 lg:mx-2 text-white transition-opacity duration-500 border border-transparent rounded-md focus:outline-none focus:ring-0 bg-wheel-300 hover:opacity-80 dark:bg-opacity-50"
             @click="scrollMeTo('how-to-container')"
           >
             <svg
@@ -36,7 +36,7 @@
             <span class="pl-1">Como Funciona?</span>
           </button>
           <button
-            class="flex order-1 md:order-2 items-center justify-center w-8/12 md:w-4/12 lg:w-3/12 p-3 my-1 md:mx-2 text-white transition-opacity duration-500 border border-transparent rounded-md focus:outline-none focus:ring-0 disabled:opacity-50 disabled:cursor-not-allowed bg-wheel-400 hover:opacity-80 dark:bg-opacity-50"
+            class="flex order-1 lg:order-2 items-center justify-center w-8/12 lg:w-4/12 lg:w-3/12 p-3 my-1 lg:mx-2 text-white transition-opacity duration-500 border border-transparent rounded-md focus:outline-none focus:ring-0 disabled:opacity-50 disabled:cursor-not-allowed bg-wheel-400 hover:opacity-80 dark:bg-opacity-50"
             :disabled="loading"
             @click="connect()"
           >

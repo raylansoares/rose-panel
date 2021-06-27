@@ -1,5 +1,5 @@
 <template>
-  <div class="flex-col h-full pb-28 w-full p-5 transition-colors duration-500 bg-white dark:bg-black bg-opacity-50 dark:bg-opacity-25 rounded-lg border border-wheel-25 dark:border-wheel-700 border-opacity-25">
+  <div class="flex-col h-auto lg:h-full pb-4 lg:pb-28 w-full p-5 transition-colors duration-500 bg-white dark:bg-black bg-opacity-50 dark:bg-opacity-25 rounded-lg border border-wheel-25 dark:border-wheel-700 border-opacity-25">
     <div class="flex items-center justify-between mb-3">
       <div class="text-xl font-bold transition-colors duration-500 text-wheel-0 dark:text-wheel-25">
         Prêmios da Roleta
@@ -45,7 +45,7 @@
         v-model="search"
         type="text"
         :disabled="sort || !!selectedItem"
-        placeholder="Buscar por nome do prêmio"
+        placeholder="Buscar prêmio"
         class="w-4/12 placeholder-gray-200 dark:placeholder-wheel-700 text-wheel-0 dark:text-wheel-25 bg-white dark:bg-wheel-800 border-wheel-25 border-opacity-25 transition-colors duration-500 rounded-md focus:border-wheel-400 focus:ring-0"
         @input="filterPrizes()"
       >
@@ -53,20 +53,20 @@
     <div>
       <table class="table-fixed border-collapse w-full">
         <thead>
-          <tr class="bg-wheel-25 bg-opacity-20 text-md font-bold transition-colors duration-500 text-wheel-0 dark:text-wheel-25">
-            <th class="w-4/12 lg:w-5/12 px-1 py-3 text-left">
+          <tr class="bg-wheel-25 bg-opacity-20 text-sm font-bold transition-colors duration-500 text-wheel-0 dark:text-wheel-25">
+            <th class="w-4/12 px-1 py-3 text-left">
               Nome/Mensagem
             </th>
-            <th class="w-2/12 px-1 py-3 text-left">
+            <th class="w-auto px-1 py-3 text-left">
               Comando/Delay
             </th>
-            <th class="w-2/12 px-1 py-3 text-left">
+            <th class="w-24 px-1 py-3 text-left">
               Cores
             </th>
-            <th class="w-2/12 px-1 py-3 text-left">
+            <th class="w-28 px-1 py-3 text-left">
               Chance/Status
             </th>
-            <th class="w-2/12 lg:w-1/12 pl-1 pr-3 py-3 text-right">
+            <th class="w-24 px-1 py-3 text-center">
               Ações
             </th>
           </tr>
@@ -125,7 +125,7 @@
                 <tr
                   class="border-b border-wheel-25 dark:border-opacity-10 border-opacity-25 hover:text-wheel-400 dark:hover:text-wheel-200 transition-all duration-500 text-wheel-0 dark:text-wheel-25"
                 >
-                  <td class="w-4/12 lg:w-5/12 text-sm px-1 py-2 text-left">
+                  <td class="w-4/12 text-sm px-1 py-2 text-left">
                     <div v-if="selectedItem !== prize._id">
                       <div>{{ prize.name }}</div>
                       <div class="text-xs">
@@ -154,7 +154,7 @@
                       >
                     </div>
                   </td>
-                  <td class="w-2/12 text-sm px-1 py-2 text-left">
+                  <td class="w-auto text-sm px-1 py-2 text-left">
                     <div v-if="selectedItem !== prize._id">
                       <div>{{ prize.command }}</div>
                       <div
@@ -187,7 +187,7 @@
                       >
                     </div>
                   </td>
-                  <td class="w-2/12 text-sm px-1 py-2 text-left">
+                  <td class="w-24 text-sm px-1 py-2 text-left">
                     <div v-if="selectedItem !== prize._id">
                       <div>{{ prize.color }}</div>
                       <div>{{ prize.text_color }}</div>
@@ -214,7 +214,7 @@
                       >
                     </div>
                   </td>
-                  <td class="w-2/12 text-sm px-1 py-2 text-left">
+                  <td class="w-28 text-sm px-1 py-2 text-left">
                     <div v-if="selectedItem !== prize._id">
                       <div>{{ prize.size }}%</div>
                       <div>
@@ -244,10 +244,10 @@
                       >
                     </div>
                   </td>
-                  <td class="w-2/12 lg:w-1/12 px-1 py-2 text-right">
+                  <td class="w-24 px-1 py-2 text-center">
                     <button
                       v-if="sort"
-                      class="handle inline-flex items-center justify-center mr-1 w-7 h-7 cursor-move rounded-full disabled:cursor-not-allowed bg-wheel-400 bg-opacity-20 border border-wheel-400 border-opacity-30 focus:ring-0 focus:outline-none"
+                      class="handle inline-flex items-center justify-center mr-1 w-8 h-8 cursor-move rounded-full disabled:cursor-not-allowed text-wheel-400 bg-wheel-400 bg-opacity-20 border border-wheel-400 border-opacity-50 focus:ring-0 focus:outline-none"
                       :disabled="sorting"
                     >
                       <svg
@@ -265,7 +265,7 @@
                     </button>
                     <button
                       v-if="!sort"
-                      class="inline-flex items-center justify-center mr-1 w-7 h-7 rounded-full disabled:cursor-not-allowed bg-wheel-400 bg-opacity-20 border border-wheel-400 border-opacity-30 focus:ring-0 focus:outline-none"
+                      class="inline-flex items-center justify-center mr-1 w-8 h-8 rounded-full disabled:cursor-not-allowed text-wheel-400 bg-wheel-400 bg-opacity-20 border border-wheel-400 border-opacity-50 focus:ring-0 focus:outline-none"
                       :disabled="!!selectedItem && selectedItem !== prize._id"
                       @click="editPrize(prize)"
                     >
@@ -294,7 +294,7 @@
                     </button>
                     <button
                       v-if="!sort"
-                      class="inline-flex items-center justify-center mr-1 w-7 h-7 rounded-full disabled:cursor-not-allowed bg-red-500 bg-opacity-20 border border-red-500 border-opacity-30 focus:ring-0 focus:outline-none"
+                      class="inline-flex items-center justify-center mr-1 w-8 h-8 rounded-full disabled:cursor-not-allowed text-red-500 bg-red-500 bg-opacity-20 border border-red-500 border-opacity-50 focus:ring-0 focus:outline-none"
                       :disabled="!!selectedItem"
                       @click="deletePrize(prize._id)"
                     >

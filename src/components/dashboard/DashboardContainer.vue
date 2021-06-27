@@ -1,5 +1,5 @@
 <template>
-  <div class="flex-col h-full w-full md:w-9/12 pb-6">
+  <div class="flex-col h-full w-full lg:w-9/12 pb-6">
     <DashboardTableContainer />
   </div>
 </template>
